@@ -60,47 +60,153 @@ a:hover {
     text-decoration: underline;
 }
 
+/* --- Navigation Refinement: Hamburger Menu --- */
 header {
     background-color: var(--color-primary-soft-pink);
     padding: 15px 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: 100%;
+    position: relative; /* Ensure header allows for positioning of nav elements */
 }
 
-nav ul {
+.nav-toggle {
+    display: block; /* Show on mobile */
+    position: absolute;
+    top: 15px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001; /* Above other header content if needed */
+    padding: 10px;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-accent-rose-gold);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-accent-rose-gold);
+    transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+/* Hamburger animation for open state */
+nav.nav-open .hamburger { /* Assuming .nav-open is on nav tag */
+    transform: rotate(45deg);
+}
+nav.nav-open .hamburger::before {
+    top: 0;
+    transform: rotate(90deg);
+}
+nav.nav-open .hamburger::after {
+    bottom: 0;
+    transform: rotate(90deg);
+}
+
+nav .nav-links ul { /* Target the UL inside .nav-links */
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column; /* Stack links vertically on mobile */
+    flex-direction: column;
     align-items: center;
+    /* Mobile: Hidden by default, full width, background */
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--color-primary-soft-pink);
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
 }
 
-nav li {
-    margin: 8px 0; /* Spacing for vertical links */
+nav.nav-open .nav-links ul { /* If .nav-open is on nav tag */
+    left: 0; /* Slide in */
 }
 
-nav a {
-    font-family: 'Pacifico', cursive; /* Romantic font for nav links */
+nav .nav-links li {
+    width: 100%;
+    text-align: center;
+    margin: 8px 0; /* Keep mobile vertical spacing */
+}
+
+nav .nav-links a {
+    display: block;
+    padding: 15px 20px;
+    font-size: 1.6em;
+    font-family: 'Pacifico', cursive;
     color: var(--color-accent-rose-gold);
     text-decoration: none;
-    font-size: 1.5em; /* Larger, more inviting font size */
-    padding: 8px 15px;
-    border-radius: 20px; /* Rounded corners for a softer feel */
+    border-radius: 20px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-nav a:hover {
+nav .nav-links a:hover,
+nav .nav-links a.active {
     background-color: var(--color-accent-rose-gold);
     color: var(--color-background-warm-white);
 }
 
-nav a.active {
-    background-color: var(--color-accent-rose-gold);
-    color: var(--color-background-warm-white);
-    /* Optional: add a bit more emphasis if needed */
-    /* box-shadow: 0 0 10px var(--color-accent-rose-gold); */
-    /* transform: scale(1.05); /* Make it slightly larger if desired */
+.nav-birthday-link {
+    /* e.g., font-weight: bold; or a slightly different color if needed */
+}
+
+/* Desktop navigation (adjusting existing @media query) */
+@media (min-width: 768px) {
+    .nav-toggle {
+        display: none; /* Hide hamburger on desktop */
+    }
+
+    nav .nav-links ul { /* Ensure this targets the UL correctly */
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        padding-top: 0;
+        left: 0;
+        box-shadow: none;
+        /* Resetting align-items from mobile if it was changed from original nav ul */
+        align-items: center; /* Assuming original nav ul was centered */
+    }
+
+    /* Remove the old nav ul direct styling from the media query if it conflicts */
+    /* nav ul { ... } */ /* This might need to be removed or merged */
+
+
+    nav .nav-links li {
+        width: auto;
+        margin: 0 10px;
+    }
+
+    nav .nav-links a {
+         font-size: 1.5em;
+         padding: 8px 15px;
+    }
 }
 
 footer {
@@ -133,6 +239,200 @@ footer p {
     }
 }
 
+/* --- Birthday Page Specific Styles (`birthday.html`) --- */
+
+.birthday-content {
+    padding-bottom: 40px; /* Extra space for footer */
+}
+
+.birthday-content h1 {
+    /* General .content-page h1 is already quite festive with Dancing Script */
+    /* We can add more flair if needed, e.g., text shadow or a slight color variation */
+    font-size: 3em; /* Slightly larger for main birthday greeting */
+    color: var(--color-accent-rose-gold);
+    /* text-shadow: 1px 1px 2px var(--color-secondary-blush); */
+}
+
+.birthday-hero {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--color-primary-soft-pink), var(--color-secondary-blush));
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(183, 110, 121, 0.3);
+}
+
+.birthday-hero img { /* Targets the placeholder banner */
+    border: 3px solid var(--color-background-warm-white);
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.birthday-greeting {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.6em;
+    color: var(--color-dark-text); /* Or var(--color-accent-rose-gold) for more pop */
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.birthday-wishes h2, .celebration-ideas h2 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--color-accent-rose-gold);
+    text-align: center;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-primary-soft-pink);
+    padding-bottom: 10px;
+}
+
+.birthday-wishes p, .celebration-ideas p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    text-align: left; /* Overriding general content-page p if it's centered/justified */
+    margin-bottom: 20px;
+}
+
+.birthday-card-placeholder {
+    background-color: rgba(255, 221, 244, 0.5); /* Soft pink translucent */
+    border: 2px dashed var(--color-accent-rose-gold);
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.3em;
+    color: var(--color-accent-rose-gold);
+    margin: 20px auto;
+    max-width: 80%;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments for Birthday Page */
+@media (min-width: 768px) {
+    .birthday-content h1 {
+        font-size: 3.8em;
+    }
+    .birthday-greeting {
+        font-size: 1.8em;
+    }
+    .birthday-wishes h2, .celebration-ideas h2 {
+        font-size: 2.5em;
+    }
+}
+
+/* --- Popup Style Review --- */
+/* The existing popup styles are generally good.
+   We can ensure the image placeholder within the popup has some basic styling. */
+
+.popup-content img { /* Targets images inside the popup, e.g., placeholder_popup_icon.png */
+    border: 2px solid var(--color-secondary-blush);
+    border-radius: 50%; /* Make it circular for an icon */
+    padding: 5px; /* Optional padding around the icon */
+    background-color: var(--color-background-warm-white);
+}
+
+/* Ensure popup button is clearly visible and matches birthday theme */
+.popup-button { /* This class is already defined, this is a review/refinement */
+    /* background-color: var(--color-accent-rose-gold); /* Already set */
+    /* color: var(--color-background-warm-white); /* Already set */
+    /* font-family: 'Pacifico', cursive; /* Already set */
+    /* No changes needed unless specific overrides for birthday context are desired. */
+    /* For example, if we wanted a slightly different color for the button on this specific popup: */
+    /* background-color: #FF69B4; /* Hot Pink for birthday action - example */
+}
+
+/* --- Birthday Popup Styles --- */
+.popup-overlay {
+    display: none; /* Hidden by default, JS will show it */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black overlay */
+    z-index: 1000; /* High z-index to be on top */
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* For fade-in effect */
+    transition: opacity 0.4s ease-in-out;
+}
+
+.popup-overlay.show { /* Class to be added by JS */
+    display: flex; /* Use flex to center content */
+    opacity: 1;
+}
+
+.popup-content {
+    background-color: var(--color-background-warm-white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    color: var(--color-dark-text);
+    transform: scale(0.9); /* For scale-in effect */
+    transition: transform 0.4s ease-in-out;
+}
+
+.popup-overlay.show .popup-content {
+    transform: scale(1);
+}
+
+.popup-content h2 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--color-accent-rose-gold);
+    font-size: 2.2em;
+    margin-bottom: 15px;
+}
+
+.popup-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: var(--color-dark-text);
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 2em;
+    color: var(--color-secondary-blush);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+.popup-close-btn:hover {
+    color: var(--color-accent-rose-gold);
+}
+
+.popup-button {
+    display: inline-block;
+    background-color: var(--color-accent-rose-gold);
+    color: var(--color-background-warm-white);
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.2em;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.popup-button:hover {
+    background-color: #A75D6A; /* Darker rose gold */
+    transform: scale(1.05);
+}
+
 /* --- Placeholder Content Styling --- */
 
 /* Moments Page - Gallery */
@@ -156,6 +456,16 @@ footer p {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 6px 15px rgba(183, 110, 121, 0.3);
 }
+
+.moment-image {
+    width: 100%;
+    height: 180px; /* Or make height auto and let aspect ratio define it */
+    object-fit: cover; /* Ensures image covers the area nicely */
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background-color: var(--color-secondary-blush); /* Fallback if image fails */
+}
+.moment-placeholder-image { display: none; } /* Hide old placeholder div if img is used */
 
 .moment-placeholder-image {
     background-color: var(--color-secondary-blush);
@@ -212,70 +522,6 @@ footer p {
     color: var(--color-accent-rose-gold);
     text-align: right;
     margin-top: 10px;
-}
-
-/* Contact Page - Form Placeholder */
-.contact-form-placeholder {
-    background-color: var(--color-primary-soft-pink);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(183, 110, 121, 0.2);
-    max-width: 600px;
-    margin: 20px auto;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    color: var(--color-accent-rose-gold);
-    margin-bottom: 8px;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--color-secondary-blush);
-    border-radius: 6px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1em;
-    background-color: var(--color-background-warm-white);
-    color: var(--color-dark-text);
-    transition: border-color 0.3s ease;
-}
-
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group textarea:focus {
-    border-color: var(--color-accent-rose-gold);
-    outline: none;
-    box-shadow: 0 0 5px var(--color-secondary-blush);
-}
-
-.submit-button-placeholder {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: var(--color-accent-rose-gold);
-    color: var(--color-background-warm-white);
-    font-family: 'Pacifico', cursive;
-    font-size: 1.3em;
-    border: none;
-    border-radius: 25px; /* Cute rounded button */
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.submit-button-placeholder:hover {
-    background-color: #A75D6A; /* Darker rose gold */
-    transform: scale(1.02);
 }
 
 /* --- Home Page Specific Styles --- */
