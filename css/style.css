@@ -1,0 +1,435 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: var(--color-background-warm-white);
+    color: var(--color-dark-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure footer sticks to bottom if content is short */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+main {
+    flex-grow: 1; /* Allows main content to expand and push footer down */
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px; /* Max width for content on larger screens */
+    margin: 0 auto; /* Center content */
+}
+
+:root {
+    --color-primary-soft-pink: #FFDDF4; /* Soft Pink */
+    --color-secondary-blush: #FFC4D6; /* Blush Tones */
+    --color-accent-rose-gold: #B76E79; /* Rose Gold */
+    --color-text-warm-white: #FAF0E6; /* Warm White (Linen) for text on dark backgrounds */
+    --color-background-warm-white: #FFFAF0; /* Floral White - a warm white background */
+    --color-pastel-harmony-1: #D8BFD8; /* Thistle - pastel harmony */
+    --color-pastel-harmony-2: #FFDEAD; /* Navajo White - pastel harmony */
+    --color-dark-text: #5D4037; /* A dark, warm color for text */
+}
+
+/* Hide scrollbars for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400; /* Material Design often uses lighter font weights for headers */
+    margin-bottom: 0.5em;
+    color: var(--color-accent-rose-gold);
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--color-accent-rose-gold);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header {
+    background-color: var(--color-primary-soft-pink);
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stack links vertically on mobile */
+    align-items: center;
+}
+
+nav li {
+    margin: 8px 0; /* Spacing for vertical links */
+}
+
+nav a {
+    font-family: 'Pacifico', cursive; /* Romantic font for nav links */
+    color: var(--color-accent-rose-gold);
+    text-decoration: none;
+    font-size: 1.5em; /* Larger, more inviting font size */
+    padding: 8px 15px;
+    border-radius: 20px; /* Rounded corners for a softer feel */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--color-accent-rose-gold);
+    color: var(--color-background-warm-white);
+}
+
+nav a.active {
+    background-color: var(--color-accent-rose-gold);
+    color: var(--color-background-warm-white);
+    /* Optional: add a bit more emphasis if needed */
+    /* box-shadow: 0 0 10px var(--color-accent-rose-gold); */
+    /* transform: scale(1.05); /* Make it slightly larger if desired */
+}
+
+footer {
+    background-color: var(--color-secondary-blush);
+    color: var(--color-dark-text);
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    font-size: 0.9em;
+}
+
+footer p {
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2em;
+}
+
+@media (min-width: 768px) {
+    nav ul {
+        flex-direction: row; /* Links in a row for larger screens */
+        justify-content: center; /* Center nav links */
+    }
+
+    nav li {
+        margin: 0 15px; /* Spacing for horizontal links */
+    }
+
+    main {
+        padding: 30px;
+    }
+}
+
+/* --- Placeholder Content Styling --- */
+
+/* Moments Page - Gallery */
+.moments-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.moment-item {
+    background-color: var(--color-primary-soft-pink);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 3px 8px rgba(183, 110, 121, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.moment-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(183, 110, 121, 0.3);
+}
+
+.moment-placeholder-image {
+    background-color: var(--color-secondary-blush);
+    height: 180px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: var(--color-background-warm-white);
+    font-family: 'Pacifico', cursive;
+    font-size: 1.5em;
+}
+
+.moment-item p {
+    font-size: 0.95em;
+    color: var(--color-dark-text);
+    line-height: 1.5;
+    text-align: center; /* Ensure this is centered if global P is justify */
+}
+
+/* Letters Page - Excerpts */
+.letter-excerpt {
+    background-color: rgba(255, 250, 240, 0.8); /* Floral White with transparency */
+    border: 1px dashed var(--color-secondary-blush);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.letter-excerpt h2 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--color-accent-rose-gold);
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    text-align: left; /* Override centered h1 from .content-page */
+    border-bottom: none; /* Override general h1 style in .content-page */
+    transform: none; /* Override general h1 style in .content-page */
+    left: auto; /* Override general h1 style in .content-page */
+
+}
+
+.letter-excerpt p {
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    text-align: left; /* Override centered p from .content-page */
+}
+
+.letter-excerpt .letter-signature {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.2em;
+    color: var(--color-accent-rose-gold);
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* Contact Page - Form Placeholder */
+.contact-form-placeholder {
+    background-color: var(--color-primary-soft-pink);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(183, 110, 121, 0.2);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: var(--color-accent-rose-gold);
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-secondary-blush);
+    border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    background-color: var(--color-background-warm-white);
+    color: var(--color-dark-text);
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--color-accent-rose-gold);
+    outline: none;
+    box-shadow: 0 0 5px var(--color-secondary-blush);
+}
+
+.submit-button-placeholder {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-accent-rose-gold);
+    color: var(--color-background-warm-white);
+    font-family: 'Pacifico', cursive;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 25px; /* Cute rounded button */
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button-placeholder:hover {
+    background-color: #A75D6A; /* Darker rose gold */
+    transform: scale(1.02);
+}
+
+/* --- Home Page Specific Styles --- */
+
+/* Hero Section Styling */
+.home-main .hero {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--color-secondary-blush); /* Using a blush tone for the hero */
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(183, 110, 121, 0.3); /* Soft rose-gold shadow */
+    position: relative; /* Needed for absolute positioning of canvas */
+    overflow: hidden; /* Ensure particles don't escape rounded corners */
+}
+
+#particleCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind the hero content */
+    pointer-events: none; /* Canvas shouldn't intercept mouse events */
+}
+
+.home-main .hero h1, .home-main .hero .tagline {
+    position: relative; /* Ensure text is above canvas */
+    z-index: 1;
+}
+
+.home-main .hero h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8em; /* Larger, more expressive font */
+    color: var(--color-dark-text); /* Darker text for contrast on blush */
+    margin-bottom: 10px;
+}
+
+.home-main .hero .tagline {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    color: var(--color-accent-rose-gold);
+    font-weight: 300;
+    position: relative; /* Ensure text is above canvas - already covered by selector above, but explicit */
+    z-index: 1; /* Ensure text is above canvas - - already covered by selector above, but explicit */
+}
+
+/* Core Sentiment Styling */
+.home-main .core-sentiment {
+    text-align: center;
+    padding: 50px 20px;
+    margin: 30px 0;
+    position: relative; /* For potential decorative elements later */
+}
+
+.home-main .core-sentiment p {
+    font-family: 'Pacifico', cursive; /* Expressive, romantic font */
+    font-size: 2.2em; /* Prominent size */
+    color: var(--color-accent-rose-gold);
+    line-height: 1.5;
+    padding: 20px;
+    background-color: rgba(255, 221, 244, 0.7); /* Soft pink with transparency */
+    border-radius: 20px;
+    display: inline-block; /* Allows background to wrap text snugly */
+    box-shadow: 0 0 15px rgba(183, 110, 121, 0.2);
+}
+
+/* Placeholder for additional content styling */
+.home-main .placeholder-content {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: var(--color-pastel-harmony-1);
+}
+
+
+/* Responsive adjustments for Home Page elements */
+@media (min-width: 768px) {
+    .home-main .hero h1 {
+        font-size: 3.5em;
+    }
+
+    .home-main .hero .tagline {
+        font-size: 1.5em;
+    }
+
+    .home-main .core-sentiment p {
+        font-size: 2.8em;
+        padding: 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .home-main .hero {
+        padding: 60px 30px;
+    }
+    .home-main .core-sentiment p {
+        font-size: 3.2em;
+    }
+}
+
+/* --- Content Page Specific Styles (About, Moments, Letters, Contact) --- */
+
+.content-page {
+    padding-top: 30px; /* Add some space below the header */
+    padding-bottom: 30px;
+}
+
+.content-page h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: var(--color-accent-rose-gold);
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-secondary-blush); /* Subtle underline effect */
+    display: inline-block; /* To make border-bottom only as wide as text */
+    position: relative; /* For centering with transform if needed, or pseudo-elements */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.content-page p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: var(--color-dark-text);
+    margin-bottom: 20px;
+    max-width: 800px; /* Readable line length */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify; /* Or left, depending on preference */
+}
+
+/* Styling for sections within content pages, could be used for gallery or letter excerpts */
+.content-page section {
+    background-color: rgba(255, 221, 244, 0.3); /* Very light soft pink */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Responsive adjustments for Content Pages */
+@media (min-width: 768px) {
+    .content-page h1 {
+        font-size: 3em;
+    }
+
+    .content-page p {
+        font-size: 1.2em;
+    }
+
+    .content-page section {
+        padding: 30px;
+    }
+}
