@@ -158,9 +158,9 @@ const Home = () => {
       exit="exit"
     >
       {/* Decorative flourishes - using simple text characters for now, could be SVGs */}
-      <Flourish className="top-left" variants={textVariants(0.8)} initial="initial" animate="animate">❦</Flourish>
-      <Flourish className="bottom-right" variants={textVariants(1.0)} initial="initial" animate="animate">❀</Flourish>
-      <Flourish className="center-ish" variants={textVariants(1.2)} initial="initial" animate="animate"> Mizpah </Flourish>
+      <Flourish className="top-left" variants={textVariants(0.8)} initial="initial" animate="animate" aria-hidden="true">❦</Flourish>
+      <Flourish className="bottom-right" variants={textVariants(1.0)} initial="initial" animate="animate" aria-hidden="true">❀</Flourish>
+      <Flourish className="center-ish" variants={textVariants(1.2)} initial="initial" animate="animate" aria-hidden="true"> Mizpah </Flourish>
 
 
       <ContentWrapper variants={contentVariants}>

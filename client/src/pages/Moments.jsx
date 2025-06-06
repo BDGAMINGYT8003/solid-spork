@@ -9,6 +9,11 @@ const pageVariants = {
   exit: { opacity: 0, scale: 0.98, transition: { duration: 0.4, ease: "easeInOut" } }
 };
 
+const galleryVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { staggerChildren: 0.1 } }
+};
+
 const itemVariants = {
   initial: { opacity: 0, y: 20, scale: 0.95 },
   animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
@@ -83,6 +88,14 @@ const MomentCaption = styled.div`
     color: ${({ theme }) => theme.colors.roseGold};
     font-size: 1.3rem;
     margin-bottom: ${({ theme }) => theme.spacing.xs};
+    @media (max-width: 480px) {
+      font-size: 1.1rem;
+    }
+  }
+  p {
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -169,15 +182,15 @@ const Moments = () => {
         Cherished Moments
       </PageTitle>
       <GalleryGrid
-        // Applying staggerChildren to the parent grid for item animations
-        variants={{ animate: { transition: { staggerChildren: 0.05 } } }}
+        variants={galleryVariants}
+        initial="initial"
+        animate="animate"
       >
         {momentsData.map((moment) => (
           <MomentItem
             key={moment.id}
             onClick={() => openModal(moment)}
             variants={itemVariants}
-            // No need for initial/animate/exit here if parent GalleryGrid handles stagger
             layout // Enables smooth re-ordering if gallery items change
           >
             <MomentImage

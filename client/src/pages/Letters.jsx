@@ -102,6 +102,11 @@ const LetterBody = styled.div`
   color: ${({ theme }) => theme.colors.textColor};
   white-space: pre-line; // Respects newlines in the letter content
 
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
   p {
     margin-bottom: ${({ theme }) => theme.spacing.md};
     &:last-child {
@@ -116,6 +121,10 @@ const Signature = styled.p`
   color: ${({ theme }) => theme.colors.accent};
   text-align: right;
   margin-top: ${({ theme }) => theme.spacing.lg};
+
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+  }
 `;
 
 

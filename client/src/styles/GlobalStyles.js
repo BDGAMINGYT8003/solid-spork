@@ -24,15 +24,22 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden; // Prevent horizontal scroll
-  }
 
-  // Hide scrollbars
-  body {
+    // Hide scrollbars
     ::-webkit-scrollbar {
       display: none;
     }
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+  .sr-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {

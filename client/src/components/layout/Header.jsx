@@ -27,6 +27,7 @@ const Logo = styled(Link)`
   font-weight: bold;
 
   &:hover {
+    transform: translateY(-1px) scale(1.03);
     color: ${({ theme }) => theme.colors.pastelHarmony1};
   }
 `;
@@ -56,9 +57,10 @@ const NavLink = styled(Link)`
   margin: 0 ${({ theme }) => theme.spacing.md};
   padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
   border-radius: ${({ theme }) => theme.borderRadius};
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-out;
 
   &:hover {
+    transform: translateY(-1px) scale(1.03);
     background-color: ${({ theme }) => theme.colors.roseGold}99;
     color: ${({ theme }) => theme.colors.warmWhite};
   }
@@ -70,6 +72,7 @@ const NavLink = styled(Link)`
     padding: ${({ theme }) => theme.spacing.md} 0;
 
     &:hover {
+    transform: translateY(-1px) scale(1.03);
       background-color: ${({ theme }) => theme.colors.roseGold};
     }
   }
@@ -100,7 +103,6 @@ const Header = () => {
     { path: '/about', label: 'About Marzia' },
     { path: '/moments', label: 'Moments' },
     { path: '/letters', label: 'Letters' },
-    { path: '/contact', label: 'Contact' },
   ];
 
   return (
@@ -108,7 +110,7 @@ const Header = () => {
       <Logo to="/">Marzia</Logo>
       <HamburgerMenu onClick={toggleMenu}>
         {/* Using Material Icons */}
-        <span className="material-icons">{isOpen ? 'close' : 'menu'}</span>
+        <span className="material-icons" aria-hidden="true">{isOpen ? 'close' : 'menu'}</span><span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
       </HamburgerMenu>
       <NavLinks isOpen={isOpen}>
         {navItems.map(item => (

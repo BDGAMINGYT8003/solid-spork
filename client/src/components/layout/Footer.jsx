@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterText>
-        Made with <HeartIcon className="material-icons">favorite</HeartIcon> in loving memory of Jannatul Ferdaus Marzia.
+        Made with <HeartIcon className="material-icons" aria-hidden="true">favorite</HeartIcon> in loving memory of Jannatul Ferdaus Marzia.
       </FooterText>
       <FooterText style={{ marginTop: '8px' }}>
         "I loooooove you sooooo much, you're sooooo adorable and friendly."

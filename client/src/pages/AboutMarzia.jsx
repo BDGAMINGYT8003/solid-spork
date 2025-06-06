@@ -38,9 +38,19 @@ const PageTitle = styled(motion.h1)`
 `;
 
 const Section = styled(motion.section)`
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadows.medium};
+    transform: translateY(-3px);
+  }
   margin-bottom: ${({ theme }) => theme.spacing.xl};
   padding: ${({ theme }) => theme.spacing.lg};
   background-color: ${({ theme }) => theme.colors.warmWhite}E6; // Slightly transparent
+
+  @media (max-width: 480px) {
+    padding: ${({ theme }) => theme.spacing.md};
+  }
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: ${({ theme }) => theme.shadows.soft};
   line-height: 1.7; // More spacious line height for readability
